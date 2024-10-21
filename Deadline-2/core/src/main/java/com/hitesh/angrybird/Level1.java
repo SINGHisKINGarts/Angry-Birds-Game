@@ -1,6 +1,5 @@
 package com.hitesh.angrybird;
 
-//import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -16,6 +15,7 @@ public class Level1 implements ApplicationListener{
      Texture RedBirdTexture;
      Texture WoodenBlockTexture;
      Texture CatapultTexture;
+     Texture PauseTexture;
 
     @Override
     public void create() {
@@ -25,6 +25,7 @@ public class Level1 implements ApplicationListener{
         RedBirdTexture = new Texture("Red Bird1.png");
         WoodenBlockTexture = new Texture("Wooden Block.jpg");
         CatapultTexture = new Texture("Catapult.png");
+        PauseTexture = new Texture("Pause.png");
 
     }
 
@@ -39,7 +40,6 @@ public class Level1 implements ApplicationListener{
         input();
         logic();
         draw();
-//        ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
         spriteBatch.begin();
         spriteBatch.draw(BackgroundTexture, 140, 210);
         spriteBatch.end();
@@ -76,15 +76,10 @@ public class Level1 implements ApplicationListener{
         spriteBatch.draw(BackgroundTexture,0,0,worldWidth,worldHeight); //draw the background
         spriteBatch.draw(RedBirdTexture,0.8f,0.9f,1,1);
         spriteBatch.draw(CatapultTexture,1,0.63f,1,1);
-        spriteBatch.draw(WoodenBlockTexture,6,0.69f,1,1);
-        spriteBatch.draw(WoodenBlockTexture,6,1.55f,1,1);
-        spriteBatch.draw(WoodenBlockTexture,6,2.55f,1,1);
-
-
-
-
-
-
+        spriteBatch.draw(WoodenBlockTexture,6,0.69f,0.5f,0.5f);
+        spriteBatch.draw(WoodenBlockTexture,6,1.18f,0.5f,0.5f);
+        spriteBatch.draw(WoodenBlockTexture,6,1.67f,0.5f,0.5f);
+        spriteBatch.draw(PauseTexture,0,4.5f,0.5f,0.5f);
 
 
         spriteBatch.end();

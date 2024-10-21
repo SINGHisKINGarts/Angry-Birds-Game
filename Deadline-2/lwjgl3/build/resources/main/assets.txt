@@ -3,8 +3,11 @@ Background.jpeg
 Background2.jpg
 Background3.png
 Black Bird.png
+Black Bird1.png
 Catapult.png
 Glass Block.png
+Home Screen.png
+Home Screen1.png
 libgdx.png
 Pause.png
 Pig1.png
@@ -26,3 +29,4 @@ ui/uiskin.json
 ui/uiskin.png
 Wooden Block.jpg
 Yellow Bird.png
+Yellow Bird1.png
