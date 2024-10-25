@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import org.w3c.dom.Text;
 
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
@@ -14,12 +15,25 @@ public class HomeScreen implements ApplicationListener {
     FitViewport viewport;
     Texture HomeScreenTexture;
     Texture PauseTexture;
+    Texture PlayButtonTexture;
+
+    float playButtonX;
+    float playButtonY;
+    float playButtonWidth;
+    float playButtonHeight;
 
     @Override
     public void create() {
         spriteBatch = new SpriteBatch();
-        viewport= new FitViewport(10.3f, 5.2f);
+        viewport= new FitViewport(8, 5);
         HomeScreenTexture = new Texture("Home Screen1.png");
+        PlayButtonTexture = new Texture("Play.png");
+
+        playButtonX = viewport.getWorldWidth() / 2 -1;
+        playButtonY = viewport.getWorldHeight() / 24;
+        playButtonWidth = 2;
+        playButtonHeight = 1;
+
 //        PauseTexture = new Texture("Pause.png");
     }
 
@@ -69,6 +83,8 @@ public class HomeScreen implements ApplicationListener {
 
             spriteBatch.draw(HomeScreenTexture,0,0,worldWidth,worldHeight); //draw the background
 //            spriteBatch.draw(PauseTexture,0,4.5f,0.5f,0.5f);
+            spriteBatch.draw(PlayButtonTexture, playButtonX, playButtonY, playButtonWidth, playButtonHeight);
+
 
 
             spriteBatch.end();
@@ -78,6 +94,7 @@ public class HomeScreen implements ApplicationListener {
         public void dispose() {
             spriteBatch.dispose();
             HomeScreenTexture.dispose();
+            PlayButtonTexture.dispose();
         }
     }
 
