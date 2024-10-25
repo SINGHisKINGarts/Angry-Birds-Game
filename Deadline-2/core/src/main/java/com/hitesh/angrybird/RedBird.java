@@ -1,4 +1,4 @@
 package com.hitesh.angrybird;
 
-public class RedBird extends Bird{
-}
+//public class RedBird extends Bird{
+//}
