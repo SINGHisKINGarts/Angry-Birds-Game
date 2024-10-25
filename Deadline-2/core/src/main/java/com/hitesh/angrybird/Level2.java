@@ -21,7 +21,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
         @Override
         public void create() {
             spriteBatch = new SpriteBatch();
-            viewport= new FitViewport(8, 5);
+            viewport= new FitViewport(9.9f, 5);
             BackgroundTexture = new Texture("Background3.png");
             RedBirdTexture = new Texture("Red Bird1.png");
             BlackBirdTexture = new Texture("Black Bird1.png");

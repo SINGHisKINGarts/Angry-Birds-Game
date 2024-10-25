@@ -18,7 +18,7 @@ public class HomeScreen implements ApplicationListener {
     @Override
     public void create() {
         spriteBatch = new SpriteBatch();
-        viewport= new FitViewport(8, 5);
+        viewport= new FitViewport(10.3f, 5.2f);
         HomeScreenTexture = new Texture("Home Screen1.png");
 //        PauseTexture = new Texture("Pause.png");
     }

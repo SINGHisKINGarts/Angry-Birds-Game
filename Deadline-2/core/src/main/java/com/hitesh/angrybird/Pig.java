@@ -1,5 +1,4 @@
 package com.hitesh.angrybird;
 
-public class Level3 {
-    
+public class Pig {
 }

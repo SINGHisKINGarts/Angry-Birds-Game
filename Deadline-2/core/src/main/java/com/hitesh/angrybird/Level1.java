@@ -20,7 +20,7 @@ public class Level1 implements ApplicationListener{
     @Override
     public void create() {
         spriteBatch = new SpriteBatch();
-        viewport= new FitViewport(8, 5);
+        viewport= new FitViewport(9.9f, 5);
         BackgroundTexture = new Texture("Background.jpeg");
         RedBirdTexture = new Texture("Red Bird1.png");
         WoodenBlockTexture = new Texture("Wooden Block.jpg");

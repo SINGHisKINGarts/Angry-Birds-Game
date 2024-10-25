@@ -8,6 +8,7 @@ Catapult.png
 Glass Block.png
 Home Screen.png
 Home Screen1.png
+Level Background.jpg
 libgdx.png
 Pause.png
 Pig1.png
