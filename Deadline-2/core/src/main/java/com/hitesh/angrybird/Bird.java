@@ -1,5 +1,4 @@
 package com.hitesh.angrybird;
-
 import com.badlogic.gdx.graphics.Texture;
 
 public abstract class Bird {

@@ -2,10 +2,7 @@ package com.hitesh.angrybird.lwjgl3;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
-import com.hitesh.angrybird.HomeScreen;
-import com.hitesh.angrybird.Level1;
-import com.hitesh.angrybird.Level2;
-import com.hitesh.angrybird.SelectLevelScreen;
+import com.hitesh.angrybird.*;
 
 /** Launches the desktop (LWJGL3) application. */
 public class Lwjgl3Launcher {
@@ -15,7 +12,7 @@ public class Lwjgl3Launcher {
     }
 
     private static Lwjgl3Application createApplication() {
-        return new Lwjgl3Application(new HomeScreen(), getDefaultConfiguration());
+        return new Lwjgl3Application(new SettingScreen(), getDefaultConfiguration());
     }
 
     private static Lwjgl3ApplicationConfiguration getDefaultConfiguration() {

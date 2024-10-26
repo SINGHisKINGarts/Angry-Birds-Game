@@ -43,7 +43,7 @@ public class SettingScreen implements ApplicationListener{
         stage=new Stage();
         Gdx.input.setInputProcessor(stage);
         spriteBatch = new SpriteBatch();
-        viewport= new FitViewport(8, 5);
+        viewport= new FitViewport(10.3f, 5.2f);
         SettingScreenTexture = new Texture("SettingsBg.png");
         BackButtonTexture = new Texture("Back.png");
 
