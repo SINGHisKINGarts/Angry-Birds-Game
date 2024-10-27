@@ -43,10 +43,10 @@ public class SelectLevelScreen implements ApplicationListener {
         Table table=new Table();
         table.setFillParent(true);
         table.left();
-        table.padBottom(100);
-        table.add(lvl1).size(60,60).padRight(20).padLeft(20);
-        table.add(lvl2).size(60,60).padRight(20).padLeft(20);
-        table.add(lvl3).size(60,60).padRight(20).padLeft(20);
+        table.padBottom(120);
+        table.add(lvl1).size(60,60).padRight(30).padLeft(250);
+        table.add(lvl2).size(60,60).padRight(30).padLeft(30);
+        table.add(lvl3).size(60,60).padRight(30).padLeft(30);
         stage.addActor(table);
 
         FreeTypeFontGenerator generator=new FreeTypeFontGenerator(Gdx.files.internal("angrybirds.ttf"));
