@@ -43,7 +43,7 @@ public class SettingScreen implements ApplicationListener{
         stage=new Stage();
         Gdx.input.setInputProcessor(stage);
         spriteBatch = new SpriteBatch();
-        viewport= new FitViewport(10.3f, 5.2f);
+        viewport= new FitViewport(8, 5);
         SettingScreenTexture = new Texture("SettingsBg.png");
         BackButtonTexture = new Texture("Back.png");
 
@@ -72,9 +72,9 @@ public class SettingScreen implements ApplicationListener{
 
         TextButton MusicButton=new TextButton("Music: ON",skin);
         TextButton SoundButton=new TextButton("Sound: ON",skin);
+
         TextButton CreditButton=new TextButton("Credits",skin);
         TextButton TutorialButton=new TextButton("Tutorial",skin);
-
 
         MusicButton.addListener(new ClickListener(){
             @Override
@@ -106,19 +106,19 @@ public class SettingScreen implements ApplicationListener{
         table.right();
         table.padTop(100);
 
-        table.add(MusicButton).padBottom(40).padLeft(20).padRight(20).size(150,50);
+        table.add(MusicButton).padBottom(20).padLeft(20).padRight(20).size(150,50);
         table.row();
         table.add(SoundButton).padBottom(20).padLeft(20).padRight(20).size(150,50);
         table.row();
+
         stage.addActor(table);
 
         Table table2 =new Table();
         table2.setFillParent(true);
         table2.left();
         table2.padTop(100);
-
-
-        table2.add(CreditButton).padBottom(40).padLeft(20).padRight(20).size(150,50);
+        table2.row();
+        table2.add(CreditButton).padBottom(20).padLeft(20).padRight(20).size(150,50);
         table2.row();
         table2.add(TutorialButton).padBottom(20).padLeft(20).padRight(20).size(150,50);
         stage.addActor(table2);
