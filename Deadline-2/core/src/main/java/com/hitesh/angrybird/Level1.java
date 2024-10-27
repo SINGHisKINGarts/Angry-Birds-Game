@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import java.util.ArrayList;
@@ -21,6 +22,8 @@ public class Level1 implements ApplicationListener, Screen {
     private FitViewport viewport;
     private Texture BackgroundTexture;
     private Texture CatapultTexture;
+    private Texture WinTexture;
+    private Image winButton;
     private Stage stage;
     private Game game;
 
@@ -39,6 +42,7 @@ public class Level1 implements ApplicationListener, Screen {
         viewport = new FitViewport(10.3f, 5.2f);
         BackgroundTexture = new Texture("Background.jpeg");
         CatapultTexture = new Texture("Catapult.png");
+        WinTexture = new Texture("Win.png");
 
         // Initialize stage and input processor
         stage = new Stage(viewport, spriteBatch);
@@ -80,7 +84,20 @@ public class Level1 implements ApplicationListener, Screen {
                 return true;
             }
         });
+
+        winButton = new Image(WinTexture);
+        winButton.setSize(0.5f, 0.5f);
+        winButton.setPosition(0, viewport.getWorldHeight() - 1.3f);
+
+        winButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.log("Level1Screen", "Win button clicked");
+                game.setScreen((Screen) new WinScreen(game));
+            }
+        });
         stage.addActor(pauseButton);
+        stage.addActor(winButton);
     }
 
     @Override

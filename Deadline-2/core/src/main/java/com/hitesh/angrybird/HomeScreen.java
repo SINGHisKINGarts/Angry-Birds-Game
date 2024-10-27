@@ -1,5 +1,6 @@
 package com.hitesh.angrybird;
 
+import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -12,21 +13,33 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
-public class HomeScreen implements Screen {
+public class HomeScreen implements ApplicationListener,Screen {
     private SpriteBatch spriteBatch;
     private FitViewport viewport;
     private Texture homeScreenTexture;
     private Texture playButtonTexture;
+    private Texture settingsButtonTexture;
     private Image playButton;
+    private Image settingsButton;
     private Game game;
     private Stage stage;
 
     public HomeScreen(Game game) {
         this.game = game;
+        Gdx.app.log("HomeScreen", "Screen initialized");
+        initialize();
+    }
+
+    private void initialize() {
+        stage=new Stage();
+        Gdx.input.setInputProcessor(stage);
         spriteBatch = new SpriteBatch();
         viewport = new FitViewport(10.3f, 5.2f);
         homeScreenTexture = new Texture("Home Screen1.png");
         playButtonTexture = new Texture("Play.png");
+        settingsButtonTexture = new Texture("Setting.png");
+
+
 
         stage = new Stage(viewport, spriteBatch);
 
@@ -44,12 +57,27 @@ public class HomeScreen implements Screen {
             }
         });
 
+        settingsButton = new Image(settingsButtonTexture);
+        settingsButton.setSize(0.8f, 0.8f);
+        settingsButton.setPosition(0, 0);
+
+        settingsButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.log("HomeScreen", "Settings button clicked");
+                game.setScreen((Screen) new SettingScreen(game));
+            }
+        });
+
         stage.addActor(playButton);
+        stage.addActor(settingsButton);
     }
 
     @Override
     public void show() {
+        Gdx.app.log("HomeScreen", "Screen shown");
         Gdx.input.setInputProcessor(stage);
+
     }
 
     @Override
@@ -64,8 +92,18 @@ public class HomeScreen implements Screen {
     }
 
     @Override
+    public void create() {
+
+    }
+
+    @Override
     public void resize(int width, int height) {
         viewport.update(width, height, true);
+    }
+
+    @Override
+    public void render() {
+
     }
 
     @Override

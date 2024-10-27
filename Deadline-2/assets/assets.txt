@@ -1,6 +1,7 @@
 Angry-Birds-Theme-Song.mp3
 angrybirds.ttf
 Back.png
+Back2.png
 Background.jpeg
 Background2.jpg
 Background3.png
@@ -24,6 +25,7 @@ Play.png
 Play1.png
 Red Bird.png
 Red Bird1.png
+Setting.png
 SettingBg.png
 SettingMainPic.png
 SettingsBg.png
@@ -35,6 +37,7 @@ ui/font.fnt
 ui/uiskin.atlas
 ui/uiskin.json
 ui/uiskin.png
+Win.png
 WinScreen.png
 Wooden Block.jpg
 Yellow Bird.png
