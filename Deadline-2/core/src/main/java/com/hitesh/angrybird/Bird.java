@@ -1,21 +1,21 @@
 package com.hitesh.angrybird;
+
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public abstract class Bird {
-    private double speed;
-    private double impactPower;
-    private double weight;
-    private int maxHits;
-    private Texture texture;
-    private String ability;
+public class Bird {
+    protected Texture texture;
+    protected float x, y, width, height;
 
-    // Constructor
-    public Bird(double speed, double impactPower, double weight, int maxHits, Texture texture, String ability) {
-        this.speed = speed;
-        this.impactPower = impactPower;
-        this.weight = weight;
-        this.maxHits = maxHits;
+    public Bird(Texture texture, float x, float y) {
         this.texture = texture;
-        this.ability = ability;
+        this.x = x;
+        this.y = y;
+        this.width = 1; // Default width
+        this.height = 1; // Default height
+        }
+        public void draw(SpriteBatch spriteBatch) {
+        spriteBatch.draw(texture, x, y, width, height);
     }
 }
+
