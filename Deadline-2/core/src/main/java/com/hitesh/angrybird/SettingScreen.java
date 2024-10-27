@@ -72,12 +72,10 @@ public class SettingScreen implements ApplicationListener{
 
         TextButton MusicButton=new TextButton("Music: ON",skin);
         TextButton SoundButton=new TextButton("Sound: ON",skin);
-        TextButton LangButton=new TextButton("Language",skin);
         TextButton CreditButton=new TextButton("Credits",skin);
-        TextButton TnCButton=new TextButton("Terms & Conditions",skin);
+        TextButton TutorialButton=new TextButton("Tutorial",skin);
 
 
-        TextButton InfoButton=new TextButton("Information",skin);
         MusicButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
@@ -108,11 +106,10 @@ public class SettingScreen implements ApplicationListener{
         table.right();
         table.padTop(100);
 
-        table.add(MusicButton).padBottom(20).padLeft(20).padRight(20).size(150,50);
+        table.add(MusicButton).padBottom(40).padLeft(20).padRight(20).size(150,50);
         table.row();
         table.add(SoundButton).padBottom(20).padLeft(20).padRight(20).size(150,50);
         table.row();
-        table.add(InfoButton).padBottom(20).padLeft(20).padRight(20).size(150,50);
         stage.addActor(table);
 
         Table table2 =new Table();
@@ -120,11 +117,10 @@ public class SettingScreen implements ApplicationListener{
         table2.left();
         table2.padTop(100);
 
-        table2.add(LangButton).padBottom(20).padLeft(20).padRight(20).size(150,50);
+
+        table2.add(CreditButton).padBottom(40).padLeft(20).padRight(20).size(150,50);
         table2.row();
-        table2.add(CreditButton).padBottom(20).padLeft(20).padRight(20).size(150,50);
-        table2.row();
-        table2.add(TnCButton).padBottom(20).padLeft(20).padRight(20).size(150,50);
+        table2.add(TutorialButton).padBottom(20).padLeft(20).padRight(20).size(150,50);
         stage.addActor(table2);
 
     }
