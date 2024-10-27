@@ -4,8 +4,24 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+
+import java.awt.*;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Level1 implements ApplicationListener{
@@ -16,17 +32,26 @@ public class Level1 implements ApplicationListener{
      Texture WoodenBlockTexture;
      Texture CatapultTexture;
      Texture PauseTexture;
+     Image PauseTexture1; //Change made
+     Stage stage; //change made
 
     @Override
     public void create() {
         spriteBatch = new SpriteBatch();
-        viewport= new FitViewport(9.9f, 5);
+        viewport= new FitViewport(10.3f, 5.2f);
         BackgroundTexture = new Texture("Background.jpeg");
         RedBirdTexture = new Texture("Red Bird1.png");
         WoodenBlockTexture = new Texture("Wooden Block.jpg");
         CatapultTexture = new Texture("Catapult.png");
         PauseTexture = new Texture("Pause.png");
-
+        stage = new Stage();
+        PauseTexture1=new Image (PauseTexture);
+        PauseTexture1.addListener(new InputListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                return super.touchDown(event, x, y, pointer, button);
+            }
+        });
     }
 
     @Override
