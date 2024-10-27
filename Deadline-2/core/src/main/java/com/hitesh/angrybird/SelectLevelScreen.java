@@ -24,29 +24,35 @@ public class SelectLevelScreen implements ApplicationListener {
     Texture LevelScreenTexture;
     Texture PauseTexture;
     Texture Level1icon;
-    Stage stage;
+    Stage stage,stage2;
 
 
     @Override
     public void create() {
         spriteBatch = new SpriteBatch();
         Skin skin= new Skin(Gdx.files.internal("uiskin.json"));
+
         stage=new Stage();
+        Gdx.input.setInputProcessor(stage);
         viewport= new FitViewport(10.3f, 5.2f);
         LevelScreenTexture = new Texture("Level Background.jpg");
         TextButton lvl1=new TextButton("1",skin);
         TextButton lvl2=new TextButton("2",skin);
         TextButton lvl3=new TextButton("3",skin);
 
+        TextButton lvl4=new TextButton("4\n" +
+                "locked",skin);
+        lvl4.setDisabled(true);
 
 
         Table table=new Table();
         table.setFillParent(true);
         table.left();
-        table.padBottom(120);
-        table.add(lvl1).size(60,60).padRight(30).padLeft(250);
-        table.add(lvl2).size(60,60).padRight(30).padLeft(30);
-        table.add(lvl3).size(60,60).padRight(30).padLeft(30);
+        table.padBottom(100);
+        table.add(lvl1).size(60,60).padRight(20).padLeft(20);
+        table.add(lvl2).size(60,60).padRight(20).padLeft(20);
+        table.add(lvl3).size(60,60).padRight(20).padLeft(20);
+        table.add(lvl4).size(60,60).padRight(20).padLeft(20);
         stage.addActor(table);
 
         FreeTypeFontGenerator generator=new FreeTypeFontGenerator(Gdx.files.internal("angrybirds.ttf"));
