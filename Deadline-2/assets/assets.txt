@@ -13,6 +13,7 @@ Home Screen1.png
 Level Background.jpg
 Level1icon.png
 libgdx.png
+Next.png
 Pause.png
 Pig1.png
 Pig2.png
@@ -23,7 +24,6 @@ Play.png
 Play1.png
 Red Bird.png
 Red Bird1.png
-Screenshot_2024-10-27_170224-removebg-preview.png
 SettingBg.png
 SettingMainPic.png
 SettingsBg.png
