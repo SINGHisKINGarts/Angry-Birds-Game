@@ -1,4 +1,8 @@
 package com.hitesh.angrybird;
 
-public class BlackBird {
+import com.badlogic.gdx.graphics.Texture;
+public class BlackBird extends Bird {
+    public BlackBird(float x, float y) {
+        super(new Texture("Black Bird1.png"), x, y);
+    }
 }

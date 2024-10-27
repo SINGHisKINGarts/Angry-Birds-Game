@@ -2,19 +2,17 @@ package com.hitesh.angrybird;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
 public class Pig {
-    Texture texture;
-    private float x, y, width, height;
+    protected Texture texture;
+    protected float x, y, width, height;
 
-    public Pig(float x, float y) {
-        this.texture = new Texture("Pig2.png");
+    public Pig(Texture texture, float x, float y) {
+        this.texture = texture;
         this.x = x;
         this.y = y;
-        this.width = 0.5f; // Set appropriate width
-        this.height = 0.5f; // Set appropriate height
+        this.width = 0.5f; // Default width
+        this.height = 0.5f; // Default height
     }
-
     public void draw(SpriteBatch spriteBatch) {
         spriteBatch.draw(texture, x, y, width, height);
     }

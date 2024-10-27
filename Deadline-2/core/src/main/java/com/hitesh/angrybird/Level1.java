@@ -51,7 +51,7 @@ public class Level1 implements ApplicationListener, Screen {
 
         // Create birds
         birds.add(new RedBird(0.8f, 0.9f));
-        birds.add(new RedBird(0, 0.48f));
+        birds.add(new BlackBird(0, 0.48f));
 
         // Create blocks
         blocks.add(new WoodenBlock(6, 0.69f));
@@ -65,9 +65,9 @@ public class Level1 implements ApplicationListener, Screen {
         blocks.add(new SteelBlock(8.84f, 1.07f));
 
         // Create pigs
-        pigs.add(new Pig(6, 2.6f));
-        pigs.add(new Pig(7, 1.68f));
-        pigs.add(new Pig(9, 1.6f));
+        pigs.add(new Pig1(6, 2.6f));
+        pigs.add(new Pig1(7, 1.68f));
+        pigs.add(new Pig1(9, 1.6f));
 
         // Create the pause button with listener
         Image pauseButton = new Image(new Texture("Pause.png"));
@@ -168,7 +168,7 @@ public class Level1 implements ApplicationListener, Screen {
 
 
 //package com.hitesh.angrybird;
-//
+
 //import com.badlogic.gdx.Game;
 //import com.badlogic.gdx.ApplicationListener;
 //import com.badlogic.gdx.Gdx;

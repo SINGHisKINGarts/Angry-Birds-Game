@@ -23,6 +23,7 @@ Play.png
 Play1.png
 Red Bird.png
 Red Bird1.png
+Screenshot_2024-10-27_170224-removebg-preview.png
 SettingBg.png
 SettingMainPic.png
 SettingsBg.png
@@ -34,6 +35,7 @@ ui/font.fnt
 ui/uiskin.atlas
 ui/uiskin.json
 ui/uiskin.png
+WinScreen.png
 Wooden Block.jpg
 Yellow Bird.png
 Yellow Bird1.png
