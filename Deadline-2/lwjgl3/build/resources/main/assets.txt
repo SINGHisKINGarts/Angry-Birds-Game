@@ -2,20 +2,24 @@ Angry-Birds-Theme-Song.mp3
 angrybirds.ttf
 Back.png
 Back2.png
+BackButton.png
 Background.jpeg
 Background2.jpg
 Background3.png
 Black Bird.png
 Black Bird1.png
 Catapult.png
+dottedLine.png
 Glass Block.png
 Home Screen.png
 Home Screen1.png
 Level Background.jpg
 Level1icon.png
 libgdx.png
+LostScreen.png
 Next.png
 Pause.png
+PauseScreen.png
 Pig1.png
 Pig2.png
 Pig3.png
@@ -30,6 +34,7 @@ SettingBg.png
 SettingMainPic.png
 SettingsBg.png
 Steel Block.png
+trajectoryPoints.png
 ui/font-list.fnt
 ui/font-subtitle.fnt
 ui/font-window.fnt

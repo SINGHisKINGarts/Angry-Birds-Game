@@ -41,7 +41,7 @@ public class WinScreen implements ApplicationListener, Screen {
         Gdx.input.setInputProcessor(stage);
         viewport= new FitViewport(10.3f, 5.2f);
         WinScreenTexture = new Texture("WinScreen.png");
-        NextTexture=new Texture("NextLevel.png");
+        NextTexture=new Texture("Next.png");
         BackTexture=new Texture("Back2.png");
 
 
@@ -150,4 +150,3 @@ public class WinScreen implements ApplicationListener, Screen {
         stage.dispose();
     }
 }
-
