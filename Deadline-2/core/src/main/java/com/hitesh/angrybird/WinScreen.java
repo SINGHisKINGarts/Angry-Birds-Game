@@ -1,6 +1,5 @@
 package com.hitesh.angrybird;
 
-import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -9,102 +8,114 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import java.util.logging.Level;
 
+public class WinScreen implements Screen {
+    private final Game game;
+    private SpriteBatch spriteBatch;
+    private Stage stage;
+    private FitViewport viewport;
+    private Texture winScreenTexture;
+    private Texture nextTexture, backTexture, menuTexture;
 
-public class WinScreen implements ApplicationListener, Screen {
-    SpriteBatch spriteBatch;
-    FitViewport viewport;
-    Texture WinScreenTexture;
-    Texture NextTexture;
-    Texture BackTexture;
-    private Game game;
-    Stage stage,stage2;
-
-    public WinScreen(Game game){
-        this.game=game;
-        Gdx.app.log("WinScreen", "Screen initialized");
+    public WinScreen(Game game) {
+        this.game = game;
         initialize();
     }
+
     private void initialize() {
+        // Initialize viewport and sprite batch
+        viewport = new FitViewport(800, 600); // Adjust dimensions to match your assets
         spriteBatch = new SpriteBatch();
-        Skin skin= new Skin(Gdx.files.internal("uiskin.json"));
 
-        stage=new Stage();
+        // Load textures
+        winScreenTexture = new Texture("WinScreen.png");
+        nextTexture = new Texture("Next.png");
+        backTexture = new Texture("Back2.png");
+        menuTexture = new Texture("GotoMenu.png");
+
+        // Initialize stage and buttons
+        stage = new Stage(viewport, spriteBatch);
         Gdx.input.setInputProcessor(stage);
-        viewport= new FitViewport(10.3f, 5.2f);
-        WinScreenTexture = new Texture("WinScreen.png");
-        NextTexture=new Texture("Next.png");
-        BackTexture=new Texture("Back2.png");
 
+        // Add "Next" button
+        Image nextButton = new Image(nextTexture);
+        nextButton.setSize(300, 300); // Adjust size based on texture
+        nextButton.setPosition(500, 100); // Center button
+        nextButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.log("WinScreen", "Next button clicked");
+                game.setScreen(new Level2(game)); // Ensure Level2 implements Screen
+            }
+        });
 
-        FreeTypeFontGenerator generator=new FreeTypeFontGenerator(Gdx.files.internal("angrybirds.ttf"));
-        FreeTypeFontGenerator.FreeTypeFontParameter parameter=new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size=32;
-        parameter.color=Color.BLACK;
-        parameter.borderWidth=1;
-        parameter.borderColor=Color.BROWN;
-        BitmapFont mediumFont = generator.generateFont(parameter);
+        // Add "Back" button
+        Image backButton = new Image(backTexture);
+        backButton.setSize(150, 150);
+        backButton.setPosition(190, 100);
+        backButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.log("WinScreen", "Back button clicked");
+                game.setScreen(new SelectLevelScreen(game)); // Transition back to menu
+            }
+        });
 
-        generator.dispose();
+        // Add "Menu" button
+        Image menuButton = new Image(menuTexture);
+        menuButton.setSize(100, 100);
+        menuButton.setPosition(650, 400);
+        menuButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.log("WinScreen", "Menu button clicked");
+                game.setScreen(new SelectLevelScreen(game));
+            }
+        });
 
-        Label.LabelStyle mediumStyle=new Label.LabelStyle();
-        mediumStyle.font=mediumFont;
+        // Add buttons to stage
+        stage.addActor(nextButton);
+        stage.addActor(backButton);
+        stage.addActor(menuButton);
 
-
-//        PauseTexture = new Texture("Pause.png");
-
-
-    }
-
-
-    @Override
-    public void create() {
-
+        // Load custom font
+//        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("angrybirds.ttf"));
+//        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+//        parameter.size = 32;
+//        parameter.color = Color.BLACK;
+//        BitmapFont mediumFont = generator.generateFont(parameter);
+//        generator.dispose();
+//
+//        Label.LabelStyle mediumStyle = new Label.LabelStyle();
+//        mediumStyle.font = mediumFont;
+//
+//        Label winLabel = new Label("Congratulations! You Won!", mediumStyle);
+//        winLabel.setPosition(300, 400);
+//        stage.addActor(winLabel);
     }
 
     @Override
     public void show() {
-        Gdx.app.log("WinScreen", "Win screen shown");
         Gdx.input.setInputProcessor(stage);
     }
 
     @Override
-    public void render(float v) {
+    public void render(float delta) {
+        // Clear screen
         ScreenUtils.clear(Color.BLACK);
-        viewport.apply();
-        spriteBatch.setProjectionMatrix(viewport.getCamera().combined);
+
+        // Draw background and stage
         spriteBatch.begin();
-
-        // store the worldWidth and worldHeight as local variables for brevity
-        float worldWidth = viewport.getWorldWidth();
-        float worldHeight = viewport.getWorldHeight();
-
-        float iconWidth = worldWidth * 1.2f;  // 20% of world width
-        float iconHeight = worldHeight * 1.2f;  // 20% of world height
-        float iconX = worldWidth / 2 ;  // Center horizontally
-        float iconY = worldHeight / 2 ;  // Center vertically
-
-        spriteBatch.draw(WinScreenTexture,0,0,worldWidth,worldHeight); //draw the background
-        spriteBatch.draw(NextTexture,iconX+1,iconY-2f,3.5f,3.5f);
-        spriteBatch.draw(BackTexture,iconX-3,iconY-1.75f,1.75f,1.45f);
-
-
-//            spriteBatch.draw(PauseTexture,0,4.5f,0.5f,0.5f);
+        spriteBatch.draw(winScreenTexture, 0, 0, viewport.getWorldWidth(), viewport.getWorldHeight());
         spriteBatch.end();
-        spriteBatch.begin();
-        spriteBatch.draw(WinScreenTexture, 140, 210);
-
-
-        spriteBatch.end();
-        stage.act();
+        stage.act(delta);
         stage.draw();
     }
 
@@ -114,39 +125,21 @@ public class WinScreen implements ApplicationListener, Screen {
     }
 
     @Override
-    public void render() {
-
-
-    }
+    public void pause() {}
 
     @Override
-    public void pause() {
-    }
+    public void resume() {}
 
     @Override
-    public void resume() {
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    private void input() {
-    }
-
-    private void logic() {
-    }
-
-    private void draw() {
-
-    }
+    public void hide() {}
 
     @Override
     public void dispose() {
         spriteBatch.dispose();
-        WinScreenTexture.dispose();
-        NextTexture.dispose();
+        winScreenTexture.dispose();
+        nextTexture.dispose();
+        backTexture.dispose();
+        menuTexture.dispose();
         stage.dispose();
     }
 }

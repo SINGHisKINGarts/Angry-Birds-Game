@@ -10,6 +10,7 @@ public class Bird {
     protected float x, y, width, height;
     protected Vector2 velocity; // Velocity of the bird
     protected Rectangle bounds; // Bounding box for collisions
+    protected boolean launched = false; // Track if bird has been launched
 
     public float getX() {
         return x;
@@ -101,5 +102,41 @@ public class Bird {
         if (texture != null) {
             texture.dispose();
         }
+    }
+
+    // New methods to support YellowBird functionality
+
+    // Update method for frame-by-frame logic
+    public void update(float delta) {
+        // Base implementation - can be overridden by subclasses
+    }
+
+    // Handle click events
+    public void onClick() {
+        // Base implementation - can be overridden by subclasses
+    }
+
+    // Reset the bird to initial state
+    public void reset() {
+        launched = false;
+        velocity.set(0, 0);
+    }
+
+    // Set the bird's texture
+    protected void setTexture(Texture newTexture) {
+        if (this.texture != null) {
+            this.texture.dispose(); // Dispose of old texture
+        }
+        this.texture = newTexture;
+    }
+
+    // Check if bird has been launched
+    public boolean isLaunched() {
+        return launched;
+    }
+
+    // Set launched state
+    public void setLaunched(boolean launched) {
+        this.launched = launched;
     }
 }

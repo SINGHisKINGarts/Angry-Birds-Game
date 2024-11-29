@@ -3,6 +3,14 @@ package com.hitesh.angrybird;
 import com.badlogic.gdx.graphics.Texture;
 public class SteelBlock extends Block {
     public SteelBlock(float x, float y) {
-        super(new Texture("Steel Block.png"), x, y, 0.8f, 0.7f,3);
+        super(x, y);
+        hitPoints = 3;  // Wooden blocks take 2 hits
+        texture = new Texture("Steel Block.png");
+        width = 0.8f;   // Customize size if needed
+        height = 0.7f;
     }
 }
+
+
+
+

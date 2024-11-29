@@ -11,6 +11,7 @@ Black Bird1.png
 Catapult.png
 dottedLine.png
 Glass Block.png
+GotoMenu.png
 Home Screen.png
 Home Screen1.png
 Level Background.jpg
@@ -29,10 +30,12 @@ Play.png
 Play1.png
 Red Bird.png
 Red Bird1.png
+Retry.png
 Setting.png
 SettingBg.png
 SettingMainPic.png
 SettingsBg.png
+slingshot.png
 Steel Block.png
 trajectoryPoints.png
 ui/font-list.fnt

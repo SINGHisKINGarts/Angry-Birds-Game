@@ -4,74 +4,46 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
-public class Block {
+public abstract class Block {
+    protected float x, y;
+    protected float width = 0.5f;  // Default size
+    protected float height = 0.5f;
+    protected int hitPoints;
     protected Texture texture;
-    protected float x, y, width, height;
-    protected int health; // Represents the block's durability (number of hits it can take)
-    protected Rectangle bounds; // Bounding box for collision detection
 
-    public Block(Texture texture, float x, float y, float width, float height, int health) {
-        this.texture = texture;
+    public int getHitPoints() {
+        return hitPoints;
+    }
+
+    public void setHitPoints(int hitPoints) {
+        this.hitPoints = hitPoints;
+    }
+
+    public Block(float x, float y) {
         this.x = x;
         this.y = y;
-        this.width = width;
-        this.height = height;
-        this.health = health; // Set block's health/durability
-        this.bounds = new Rectangle(x, y, width, height); // Initialize bounds
     }
 
-    // Draw the block
-    public void draw(SpriteBatch spriteBatch) {
-        spriteBatch.draw(texture, x, y, width, height);
+    public void draw(SpriteBatch batch) {
+        batch.draw(texture, x, y, width, height);
     }
 
-    // Get the block's bounding box for collision detection
-    public Rectangle getBounds() {
-        return bounds;
-    }
-
-    // Reduce the block's health when it takes a hit
     public void takeHit() {
-        health--;
+        hitPoints--;
     }
 
-    // Check if the block is destroyed (health <= 0)
     public boolean isDestroyed() {
-        return health <= 0;
+        return hitPoints <= 0;
     }
 
-    // Dispose of the texture to free resources
+    public float getX() { return x; }
+    public float getY() { return y; }
+    public float getWidth() { return width; }
+    public float getHeight() { return height; }
+
     public void dispose() {
         if (texture != null) {
             texture.dispose();
         }
     }
 }
-
-
-
-
-
-
-//package com.hitesh.angrybird;
-//
-//
-//import com.badlogic.gdx.graphics.Texture;
-//import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-//
-//public class Block {
-//    protected Texture texture;
-//    protected float x, y, width, height;
-//
-//    public Block(Texture texture, float x, float y, float width, float height) {
-//        this.texture = texture;
-//        this.x = x;
-//        this.y = y;
-//        this.width = width;
-//        this.height = height;
-//    }
-//
-//    public void draw(SpriteBatch spriteBatch) {
-//        spriteBatch.draw(texture, x, y, width, height);
-//    }
-//}

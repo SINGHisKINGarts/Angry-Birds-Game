@@ -15,8 +15,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import java.util.Set;
-
 
 public class SettingScreen implements ApplicationListener, Screen {
     private SpriteBatch spriteBatch;
@@ -26,10 +24,7 @@ public class SettingScreen implements ApplicationListener, Screen {
     private Image BackButtonImage;
     private Stage stage;
     private Game game;
-    private float playButtonX;
-    private float playButtonY;
-    private float playButtonWidth;
-    private float playButtonHeight;
+
     public SettingScreen(Game game) {
         this.game = game;
         Gdx.app.log("Settings", "Screen initialized");
@@ -37,116 +32,113 @@ public class SettingScreen implements ApplicationListener, Screen {
     }
 
     private void initialize() {
-        stage=new Stage();
+        stage = new Stage();
         Gdx.input.setInputProcessor(stage);
         spriteBatch = new SpriteBatch();
-        viewport= new FitViewport(10.3f, 5.2f);
+        viewport = new FitViewport(10.3f, 5.2f);
         SettingScreenTexture = new Texture("SettingsBg.png");
-        BackButtonTexture = new Texture("Back.png");
+        BackButtonTexture = new Texture("Back2.png");
 
-
-        playButtonX = viewport.getWorldWidth() / 2;
-        playButtonY = viewport.getWorldHeight() / 2;
-        FreeTypeFontGenerator generator=new FreeTypeFontGenerator(Gdx.files.internal("angrybirds.ttf"));
-        FreeTypeFontGenerator.FreeTypeFontParameter parameter=new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size=32;
-        parameter.color=Color.BLACK;
-        parameter.borderWidth=1;
-        parameter.borderColor=Color.BROWN;
+        // Font setup
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("angrybirds.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = 32;
+        parameter.color = Color.BLACK;
+        parameter.borderWidth = 1;
+        parameter.borderColor = Color.BROWN;
         BitmapFont mediumFont = generator.generateFont(parameter);
-
         generator.dispose();
 
-        Label.LabelStyle mediumStyle=new Label.LabelStyle();
-        mediumStyle.font=mediumFont;
-//        Label Language=new Label("Language",mediumStyle);
-//        Label info=new Label("Information",mediumStyle);
-//        Label Music=new Label("Music: ON",mediumStyle);
-//        Label Sound=new Label("Sound: ON",mediumStyle);
+        // Skin for buttons
+        Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
 
+        // Buttons
+        TextButton BackButton = new TextButton("Back", skin);
+        TextButton MusicButton = new TextButton("Music: ON", skin);
+        TextButton SoundButton = new TextButton("Sound: ON", skin);
+        TextButton CreditButton = new TextButton("Credits", skin);
+        TextButton TutorialButton = new TextButton("Tutorial", skin);
 
-        Skin skin= new Skin(Gdx.files.internal("uiskin.json"));
+        // New Text Back Button
+        TextButton BackTextButton = new TextButton("Back", skin);
+        BackTextButton.setPosition(0.5f, 0.5f);  // Position it at the bottom
+        BackTextButton.setSize(2f, 1f);  // Set a reasonable size
+        BackTextButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.log("SettingScreen", "Back text button clicked");
+                game.setScreen(new HomeScreen(game));
+                dispose();
+            }
+        });
+        stage.addActor(BackTextButton);
 
-        TextButton MusicButton=new TextButton("Music: ON",skin);
-        TextButton SoundButton=new TextButton("Sound: ON",skin);
-
-        TextButton CreditButton=new TextButton("Credits",skin);
-        TextButton TutorialButton=new TextButton("Tutorial",skin);
-
+        // Back Button - Improved Positioning
         BackButtonImage = new Image(BackButtonTexture);
-        BackButtonImage.setSize(1, 0.75f);
-        BackButtonImage.setPosition(0.5f, 2.5f);
+        BackButtonImage.setSize(2f, 2f);  // Slightly larger size
+        BackButtonImage.setPosition(0.5f, 4.5f);  // Top left, adjusted
         BackButtonImage.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 Gdx.app.log("SettingScreen", "Back button clicked");
-                game.setScreen((Screen) new HomeScreen(game));
+                game.setScreen(new HomeScreen(game));
+                dispose();
             }
         });
         stage.addActor(BackButtonImage);
 
-
+        // Music Button Listener
         MusicButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                MusicOnOff();
-
+                // Add music toggle logic here
             }
         });
 
-//        Table table=new Table();
-//        table.setFillParent(true);
-//        table.left();
-//        table.add(Language).padBottom(20).padLeft(40);
-//        table.row();
-//        table.add(info).padBottom(20).padLeft(40);
-//
-//        Table table2=new Table();
-//        table2.setFillParent(true);
-//        table2.right();
-//        table2.add(Music).padBottom(20).padRight(40);
-//        table2.row();
-//        table2.add(Sound).padBottom(20).padRight(40);
+        // Back Button Listener
+        BackButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.log("SettingScreen", "Back button clicked");
+                game.setScreen(new HomeScreen(game));
+                dispose();
+            }
+        });
 
-
-//        stage.addActor(table);
-//        stage.addActor(table2);
-        Table table =new Table();
+        // Right Side Table
+        Table table = new Table();
         table.setFillParent(true);
         table.right();
         table.padTop(100);
-
         table.add(MusicButton).padBottom(20).padLeft(20).padRight(20).size(150,50);
         table.row();
         table.add(SoundButton).padBottom(20).padLeft(20).padRight(20).size(150,50);
-        table.row();
-
         stage.addActor(table);
 
-        Table table2 =new Table();
+        // Left Side Table
+//        Table table2 = new Table();
+//        table2.setFillParent(true);
+//        table2.left();
+//        table2.padTop(100);
+//        table2.add(BackButton).padBottom(20).size(50,50);
+//        table2.row();
+//        table2.add(CreditButton).padBottom(20).padLeft(20).padRight(20).size(150,50);
+//        table2.row();
+//        table2.add(TutorialButton).padBottom(20).padLeft(20).padRight(20).size(150,50);
+//        stage.addActor(table2);
+        Table table2 = new Table();
         table2.setFillParent(true);
-        table2.left();
-        table2.padTop(100);
+        table2.left().top();
+        table2.padTop(20);
+        table2.padLeft(20);
+        table2.add(BackButton).size(50,50).left().colspan(2);
         table2.row();
-        table2.add(CreditButton).padBottom(20).padLeft(20).padRight(20).size(150,50);
+        table2.add(CreditButton).padTop(20).size(150,50);
         table2.row();
-        table2.add(TutorialButton).padBottom(20).padLeft(20).padRight(20).size(150,50);
+        table2.add(TutorialButton).padTop(20).size(150,50);
         stage.addActor(table2);
 
-    }
 
-    public void MusicOnOff(){
-
-    }
-
-    @Override
-    public void create() {
-
-
-    }
-
-    @Override
-    public void show() {
 
     }
 
@@ -157,17 +149,9 @@ public class SettingScreen implements ApplicationListener, Screen {
         spriteBatch.setProjectionMatrix(viewport.getCamera().combined);
         spriteBatch.begin();
 
-        // store the worldWidth and worldHeight as local variables for brevity
         float worldWidth = viewport.getWorldWidth();
         float worldHeight = viewport.getWorldHeight();
-
-        spriteBatch.draw(SettingScreenTexture,0,0,worldWidth,worldHeight); //draw the background
-//            spriteBatch.draw(PauseTexture,0,4.5f,0.5f,0.5f);
-//        spriteBatch.draw(BackButtonTexture,0.5f,viewport.getWorldHeight()-1.25f,1,0.75f);
-
-//        spriteBatch.end();
-//        spriteBatch.begin();
-        spriteBatch.draw(SettingScreenTexture, 140, 210);
+        spriteBatch.draw(SettingScreenTexture, 0, 0, worldWidth, worldHeight);
 
         spriteBatch.end();
         stage.act(delta);
@@ -177,46 +161,22 @@ public class SettingScreen implements ApplicationListener, Screen {
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height, true);
-    }
-
-    @Override
-    public void render() {
-
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    private void input() {
-
-    }
-
-    private void logic() {
-
-    }
-
-    private void draw() {
-
+        stage.getViewport().update(width, height, true);
     }
 
     @Override
     public void dispose() {
         spriteBatch.dispose();
         SettingScreenTexture.dispose();
-
+        BackButtonTexture.dispose();
         stage.dispose();
-
     }
+
+    // Implement other required methods...
+    @Override public void create() {}
+    @Override public void show() {}
+    @Override public void render() {}
+    @Override public void pause() {}
+    @Override public void resume() {}
+    @Override public void hide() {}
 }

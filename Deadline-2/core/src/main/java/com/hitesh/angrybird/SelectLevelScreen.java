@@ -66,6 +66,24 @@ public class SelectLevelScreen implements ApplicationListener, Screen {
         });
         stage.addActor(table);
 
+        lvl2.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.log("SelectLevelScreen", "Level-2 clicked");
+                game.setScreen((Screen) new Level2(game)); // Correctly transitioning to SelectLevelScreen
+            }
+        });
+        stage.addActor(table);
+
+        lvl3.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.log("SelectLevelScreen", "Level-2 clicked");
+                game.setScreen((Screen) new Level3(game)); // Correctly transitioning to SelectLevelScreen
+            }
+        });
+        stage.addActor(table);
+
         // Create custom font
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("angrybirds.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
@@ -141,5 +159,3 @@ public class SelectLevelScreen implements ApplicationListener, Screen {
         stage.dispose();
     }
 }
-
-
