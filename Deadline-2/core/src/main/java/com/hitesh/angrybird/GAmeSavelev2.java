@@ -82,7 +82,7 @@ public class GAmeSavelev2 implements Serializable {
 
             BlockData(String blockType, float x, float y) {
                 this.blockType = blockType;
-                this.x = x;
+                this.x =x;
                 this.y = y;
             }
         }
